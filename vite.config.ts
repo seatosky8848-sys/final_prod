@@ -15,7 +15,7 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   build: {
-    outDir: "dist",
+    outDir: "dist/client",
     emptyOutDir: true,
     sourcemap: false,
     target: "es2020",
