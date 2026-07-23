@@ -29,8 +29,8 @@ export function SiteNav() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
-        <Link to="/" className="font-display text-2xl md:text-[28px] tracking-tight font-bold text-foreground">
+      <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-4 sm:px-6 md:px-10">
+        <Link to="/" className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-[28px]">
           Ajay Lalwani
         </Link>
 
@@ -51,7 +51,7 @@ export function SiteNav() {
         <div className="flex items-center gap-3">
           <Link
             to="/contact"
-            className="hidden md:inline-flex items-center h-10 px-5 rounded-full bg-[#050505] text-[#f5f4f1] text-[12px] font-medium tracking-wider uppercase hover:bg-accent transition-colors"
+            className="hidden h-10 items-center rounded-full bg-[#050505] px-5 text-[12px] font-medium uppercase tracking-wider text-[#f5f4f1] transition-colors hover:bg-accent sm:inline-flex"
           >
             Support Mission
           </Link>

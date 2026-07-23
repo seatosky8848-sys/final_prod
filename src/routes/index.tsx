@@ -41,6 +41,7 @@ function Home() {
   return (
     <>
       <Hero />
+      <RouteMapSection />
       <Narrative />
       <Timeline />
       <Stats />
@@ -53,75 +54,152 @@ function Home() {
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
+  const highlights = ["7,500+ km", "285+ forts", "Everest Base Camp", "Everest Summit"];
 
   return (
-    <section ref={ref} className="relative pt-32 md:pt-36 pb-20 md:pb-32 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-6 lg:pt-12">
-            <Reveal>
-              <p className="eyebrow">— A Documentary Expedition</p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h1 className="display-xxl mt-6">
-                Sea to<br />Sky
-              </h1>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="font-display italic text-2xl md:text-3xl mt-8 text-foreground/80">
-                Beyond limits. Beyond sight.
-              </p>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <p className="mt-6 text-[16px] leading-relaxed text-muted-foreground max-w-md">
-                A historic cycling and mountaineering journey from India's coastline to the summit
-                of Mount Everest — led by a visually impaired endurance athlete redefining what it
-                means to see.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="mt-10 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/mission"
-                  className="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-[#050505] text-[#f5f4f1] text-[12px] tracking-[0.18em] uppercase font-medium hover:bg-accent transition-colors"
-                >
-                  Explore Journey <ArrowRight size={14} />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center h-12 px-7 rounded-full border border-foreground/25 text-[12px] tracking-[0.18em] uppercase font-medium hover:border-foreground transition-colors"
-                >
-                  Support Mission
-                </Link>
-              </div>
-            </Reveal>
-          </div>
+    <section ref={ref} className="relative min-h-[88svh] overflow-hidden sm:min-h-[92vh]">
+      <motion.div style={{ y }} className="absolute inset-0">
+        <img
+          src={heroImg}
+          alt="Cyclist on a Himalayan mountain road at golden hour"
+          width={1536}
+          height={1280}
+          className="h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.55)_45%,rgba(0,0,0,0.2)_100%)]" />
+      </motion.div>
 
-          <div className="lg:col-span-6 relative">
-            <motion.div style={{ y }} className="relative">
-              <div className="aspect-[4/5] md:aspect-[5/6] overflow-hidden bg-muted">
-                <img
-                  src={heroImg}
-                  alt="Cyclist on a Himalayan mountain road at golden hour"
-                  width={1536}
-                  height={1280}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.6 }}
-                className="hidden md:block absolute -bottom-10 -left-10 max-w-[300px] bg-[#f5f4f1] border border-border p-7 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.25)]"
+      <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-4 py-8 sm:px-6 sm:py-10 md:min-h-[92vh] md:px-10 md:py-16">
+        <div className="max-w-3xl pb-4 sm:pb-6 md:pb-10">
+          <Reveal>
+            <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/70 sm:text-[11px]">
+              Ajay Lalwani • Sea to Sky Expedition
+            </p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mt-4 text-4xl leading-[0.88] tracking-[-0.03em] text-white sm:mt-5 sm:text-5xl md:text-6xl lg:text-[7.2rem] xl:text-[8.8rem]">
+              SEA<br />TO<br />SKY
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-4 max-w-2xl text-[16px] leading-[1.35] text-white/80 sm:mt-6 sm:text-[18px] md:text-[20px] lg:text-[24px]">
+              A visually impaired athlete has traversed India by bicycle, scaled 285+ forts, reached Everest Base Camp, and now prepares for a historic summit attempt on Mount Everest.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {highlights.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[9px] uppercase tracking-[0.2em] text-white/80 backdrop-blur-sm sm:px-4 sm:text-[10px]"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-6 flex flex-col items-start gap-3 sm:mt-8 sm:flex-row sm:items-center">
+              <Link
+                to="/mission"
+                className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#f5f4f1] px-7 text-[12px] font-medium uppercase tracking-[0.18em] text-[#050505] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ffffff] sm:w-auto"
               >
-                <Quote size={16} className="text-accent mb-3" />
-                <p className="font-display italic text-[17px] leading-snug">
-                  "Vision is not what the eyes see. Vision is what the heart feels."
+                Discover the Journey <ArrowRight size={14} />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/25 px-7 text-[12px] font-medium uppercase tracking-[0.18em] text-white transition-all duration-300 hover:border-white hover:bg-white/10 sm:w-auto"
+              >
+                Support the Mission
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+function RouteMapSection() {
+  const routePoints = [
+    { place: "Mumbai", detail: "The starting point of the expedition" },
+    { place: "Kashmir", detail: "The northern frontier of the mission" },
+    { place: "Kanyakumari", detail: "The southern edge of the journey" },
+    { place: "Mumbai", detail: "The route closes where it began" },
+  ];
+
+  return (
+    <section className="relative py-16 sm:py-20 md:py-28">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-10">
+        <div className="overflow-hidden rounded-[36px] border border-black/10 bg-[#050505] p-6 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.45)] md:p-8 lg:p-10">
+          <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
+            <div className="max-w-xl">
+              <Reveal>
+                <p className="eyebrow text-white/55">— The Expedition Route</p>
+              </Reveal>
+              <Reveal delay={0.05}>
+                <h2 className="mt-5 text-3xl leading-tight text-[#f5f4f1] sm:text-4xl md:text-5xl">
+                  A journey written in motion.
+                </h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="mt-6 text-[15px] leading-[1.75] text-white/70 sm:text-[16px]">
+                  From Mumbai to Kashmir, then to Kanyakumari and back again, the route spans the country with a single purpose: to turn endurance into a message of possibility.
                 </p>
-                <p className="eyebrow mt-4">— Ajay Lalwani</p>
-              </motion.div>
-            </motion.div>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <div className="mt-8 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-white/70 sm:text-[11px]">
+                    Mumbai → Kashmir → Kanyakumari → Mumbai
+                  </span>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={0.08} className="w-full">
+              <div className="rounded-[28px] border border-white/10 bg-[#0d0d0d] p-5 text-[#f5f4f1] md:p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/55">Journey Path</p>
+                    <p className="mt-1 font-display text-xl">From coast to summit</p>
+                  </div>
+                  <div className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-white/60">
+                    7,500+ km
+                  </div>
+                </div>
+
+                <div className="relative mt-6">
+                  <div className="absolute left-[11px] top-0 bottom-0 w-px bg-white/15" />
+                  <div className="space-y-4">
+                    {routePoints.map((point, index) => (
+                      <div key={point.place + index} className="relative pl-8">
+                        <div className="absolute left-0 top-2 h-[10px] w-[10px] rounded-full border border-[#4169E1] bg-[#f5f4f1]" />
+                        <p className="font-display text-lg text-[#f5f4f1]">{point.place}</p>
+                        <p className="mt-1 text-[13px] leading-[1.6] text-white/65">{point.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-[16px] border border-white/10 bg-white/5 p-4">
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">Distance</p>
+                    <p className="mt-2 font-display text-2xl">7,500+</p>
+                  </div>
+                  <div className="rounded-[16px] border border-white/10 bg-white/5 p-4">
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">States</p>
+                    <p className="mt-2 font-display text-2xl">12</p>
+                  </div>
+                  <div className="rounded-[16px] border border-white/10 bg-white/5 p-4">
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">Mission</p>
+                    <p className="mt-2 font-display text-2xl">One</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -131,55 +209,52 @@ function Hero() {
 
 function Narrative() {
   return (
-    <section className="py-24 md:py-40 relative">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-center relative">
+    <section className="relative py-20 sm:py-24 md:py-36">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-10">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-20">
           <span
             aria-hidden
-            className="absolute right-0 lg:right-20 top-0 font-display font-bold text-[180px] md:text-[280px] leading-none text-foreground/[0.04] select-none pointer-events-none"
+            className="pointer-events-none absolute right-0 top-0 font-display text-[180px] font-bold leading-none text-foreground/[0.04] select-none md:text-[280px] lg:right-20"
           >
             01
           </span>
 
-          <Reveal className="lg:col-span-6 relative">
-            <div className="aspect-[4/5] overflow-hidden bg-muted">
+          <Reveal className="relative lg:col-span-5">
+            <div className="overflow-hidden rounded-[32px] border border-border bg-muted">
               <img
                 src={portraitImg}
                 alt="Black and white portrait of Ajay Lalwani"
                 width={1024}
                 height={1280}
                 loading="lazy"
-                className="w-full h-full object-cover grayscale"
+                className="h-full w-full object-cover grayscale"
               />
             </div>
           </Reveal>
 
-          <div className="lg:col-span-6 relative">
+          <div className="relative lg:col-span-7">
             <Reveal>
               <p className="eyebrow">— The Narrative</p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="display-xl mt-6">Redefining<br />Human<br />Determination.</h2>
+              <h2 className="mt-6 text-3xl leading-tight sm:text-4xl md:text-5xl">
+                Redefining what courage looks like.
+              </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-8 space-y-5 text-[15.5px] leading-[1.75] text-foreground/80 max-w-lg">
+              <div className="mt-8 max-w-xl space-y-5 text-[15.5px] leading-[1.75] text-foreground/80">
                 <p>
-                  Ajay Lalwani is more than an athlete. He is a testament to the unyielding spirit of
-                  the human soul. A visually impaired cyclist, mountaineer, and national medalist, he
-                  is currently preparing for his most audacious chapter yet — Mount Everest.
+                  Ajay Lalwani is more than an athlete. He is a living testament to endurance, discipline, and purpose. A visually impaired cyclist, mountaineer, and national medalist, he is preparing for his most ambitious chapter yet — Mount Everest.
                 </p>
                 <p>
-                  From pedaling 7,500km across the length of India to scaling 285 forts on foot, his
-                  journey is a masterclass in perceived limitations. Every pedal stroke and every
-                  step is a message of inclusion and possibility for nineteen million Indians living
-                  with visual impairment.
+                  From cycling 7,500 km across India to scaling 285 forts on foot, his journey is a powerful demonstration that perceived limits can be rewritten. Every milestone carries a larger message of inclusion, resilience, and possibility.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.15}>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 mt-10 text-[12px] tracking-[0.2em] uppercase font-medium text-accent group"
+                className="mt-10 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.2em] text-accent transition-colors hover:text-foreground"
               >
                 Read the full biography
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -199,25 +274,25 @@ function Timeline() {
   };
 
   return (
-    <section className="py-24 md:py-32">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="flex items-end justify-between mb-12">
+    <section className="py-20 sm:py-24 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-10">
+        <div className="mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
           <Reveal>
             <p className="eyebrow">— Chronicle</p>
-            <h2 className="display-lg mt-3">Expedition Timeline</h2>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Expedition Timeline</h2>
           </Reveal>
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden items-center gap-2 md:flex">
             <button
               onClick={() => scroll(-1)}
               aria-label="Previous"
-              className="h-11 w-11 rounded-full border border-border inline-flex items-center justify-center hover:bg-foreground hover:text-background transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border transition-colors hover:bg-foreground hover:text-background"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={() => scroll(1)}
               aria-label="Next"
-              className="h-11 w-11 rounded-full border border-border inline-flex items-center justify-center hover:bg-foreground hover:text-background transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border transition-colors hover:bg-foreground hover:text-background"
             >
               <ChevronRight size={18} />
             </button>
@@ -225,31 +300,26 @@ function Timeline() {
         </div>
       </div>
 
-      <div
-        ref={scrollerRef}
-        className="overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
-      >
-        <div className="flex gap-6 px-6 md:px-10 pb-4" style={{ minWidth: "min-content" }}>
+      <div ref={scrollerRef} className="overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar">
+        <div className="flex gap-4 px-4 pb-4 sm:gap-6 sm:px-6 md:px-10" style={{ minWidth: "min-content" }}>
           {timeline.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.05}>
-              <article className="snap-start w-[320px] md:w-[400px] shrink-0">
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted group">
+              <article className="w-[84vw] shrink-0 snap-start rounded-[28px] border border-border bg-[#f5f4f1] p-3 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] sm:w-[320px] md:w-[400px]">
+                <div className="group relative aspect-[4/3] overflow-hidden rounded-[20px] bg-muted">
                   <img
                     src={item.img}
                     alt={item.title}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-[1.03]"
                   />
-                  <span className="absolute top-4 left-4 bg-[#050505] text-[#f5f4f1] text-[11px] tracking-[0.2em] uppercase px-3 py-1.5">
+                  <span className="absolute left-4 top-4 rounded-full bg-[#050505] px-3 py-1.5 text-[11px] uppercase tracking-[0.2em] text-[#f5f4f1]">
                     {item.year}
                   </span>
                 </div>
                 <div className="mt-5">
                   <p className="eyebrow">{item.location}</p>
-                  <h3 className="font-display text-2xl mt-2">{item.title}</h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                    {item.desc}
-                  </p>
+                  <h3 className="mt-2 font-display text-2xl">{item.title}</h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">{item.desc}</p>
                 </div>
               </article>
             </Reveal>
@@ -270,20 +340,18 @@ function Stats() {
     { v: 5364, suf: "m", label: "Highest Elevation" },
   ];
   return (
-    <section className="bg-[#050505] text-[#f5f4f1] py-24 md:py-32 mt-12">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+    <section className="mt-12 bg-[#050505] py-20 text-[#f5f4f1] sm:py-24 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-10">
         <Reveal>
           <p className="eyebrow text-[#f5f4f1]/50">— Impact in numbers</p>
         </Reveal>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 mt-12 md:divide-x divide-white/10">
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:mt-12 sm:gap-y-10 md:grid-cols-4 md:divide-x md:divide-white/10">
           {items.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08} className="md:px-10 first:pl-0">
-              <p className="font-display text-5xl md:text-6xl tracking-tight">
+              <p className="font-display text-4xl tracking-tight sm:text-5xl md:text-6xl">
                 <Counter value={s.v} suffix={s.suf} />
               </p>
-              <p className="mt-4 text-[11px] tracking-[0.22em] uppercase text-[#f5f4f1]/55">
-                {s.label}
-              </p>
+              <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-[#f5f4f1]/55">{s.label}</p>
             </Reveal>
           ))}
         </div>
@@ -294,13 +362,13 @@ function Stats() {
 
 function QuoteBlock() {
   return (
-    <section className="py-32 md:py-44">
-      <div className="max-w-3xl mx-auto px-6 md:px-10 text-center">
+    <section className="py-24 sm:py-28 md:py-44">
+      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 md:px-10">
         <Reveal>
           <Quote size={36} className="text-accent mx-auto" strokeWidth={1.5} />
         </Reveal>
         <Reveal delay={0.05}>
-          <blockquote className="mt-10 font-display italic text-[28px] md:text-[40px] leading-[1.2] tracking-tight">
+          <blockquote className="mt-8 font-display text-[22px] leading-[1.2] tracking-tight italic sm:mt-10 sm:text-[28px] md:text-[40px]">
             "Limitations are often self-imposed. When you look beyond what you think you can't do,
             you discover an ocean of what you can."
           </blockquote>
@@ -325,9 +393,9 @@ function Mission() {
   };
 
   return (
-    <section className="bg-[#ecebe7] py-24 md:py-36">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+    <section className="bg-[#ecebe7] py-20 sm:py-24 md:py-36">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-10">
+        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-6">
             <Reveal>
               <p className="eyebrow">— Contribution</p>
@@ -345,7 +413,7 @@ function Mission() {
 
             <Reveal delay={0.15}>
               <div className="mt-10 space-y-4">
-                <div className="bg-[#f5f4f1] border border-border p-5 flex items-start gap-5">
+                <div className="flex items-start gap-4 border border-border bg-[#f5f4f1] p-4 sm:gap-5 sm:p-5">
                   <span className="font-display text-xs tracking-widest uppercase text-accent mt-1">UPI</span>
                   <div>
                     <p className="eyebrow">UPI Payment</p>
@@ -367,7 +435,7 @@ function Mission() {
           <Reveal delay={0.1} className="lg:col-span-6">
             <form
               onSubmit={submit}
-              className="bg-[#f5f4f1] border border-border p-8 md:p-10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.2)]"
+              className="border border-border bg-[#f5f4f1] p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.2)] sm:p-8 md:p-10"
             >
               <p className="eyebrow text-accent">— Become a sponsor</p>
               <h3 className="display-lg mt-3">Join a Collective<br />of Visionary Brands.</h3>

@@ -7,8 +7,8 @@ export function SiteFooter() {
   const [email, setEmail] = useState("");
   return (
     <footer className="bg-[#ecebe7] mt-32">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 pt-24 pb-12">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8">
+      <div className="mx-auto max-w-[1400px] px-4 pb-12 pt-20 sm:px-6 sm:pt-24 md:px-10">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
             <Link to="/" className="font-display text-3xl font-bold">
               Ajay Lalwani
@@ -86,7 +86,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-20 pt-8 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:mt-20 md:flex-row md:items-center">
           <p>© 2026 Ajay Lalwani. Vision Beyond Sight.</p>
           <p>Crafted with intention.</p>
         </div>
