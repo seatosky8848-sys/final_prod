@@ -17,20 +17,46 @@ import { Toaster } from "sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="font-display text-7xl font-bold">404</h1>
-        <h2 className="mt-4 text-xl font-medium">Off the trail.</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist.
-        </p>
-        <div className="mt-8">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-[#050505] text-[#f5f4f1] text-xs tracking-widest uppercase"
-          >
-            Return Home
-          </Link>
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(circle_at_top_left,_rgba(65,105,225,0.16),_transparent_38%),linear-gradient(135deg,#f5f4f1_0%,#ecebe7_100%)] px-4 py-16 sm:px-6">
+      <div className="w-full max-w-3xl overflow-hidden rounded-[32px] border border-border bg-[#f5f4f1]/90 p-8 shadow-[0_30px_90px_-35px_rgba(0,0,0,0.28)] backdrop-blur sm:p-10 lg:p-14">
+        <div className="max-w-2xl">
+          <p className="eyebrow text-accent">— Lost in the journey</p>
+          <h1 className="mt-4 font-display text-6xl font-bold leading-none sm:text-7xl lg:text-8xl">
+            404
+          </h1>
+          <h2 className="mt-5 text-2xl font-semibold text-foreground sm:text-3xl">
+            This page is off the route.
+          </h2>
+          <p className="mt-4 max-w-xl text-[15px] leading-[1.75] text-muted-foreground sm:text-[16px]">
+            The trail you were looking for seems to have moved. You can return to the expedition home, explore the mission, or head to the gallery for a deeper view of the journey.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-[#050505] px-6 text-[12px] font-medium uppercase tracking-[0.2em] text-[#f5f4f1] transition-colors hover:bg-accent"
+            >
+              Return Home
+            </Link>
+            <Link
+              to="/mission"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-border px-6 text-[12px] font-medium uppercase tracking-[0.2em] text-foreground transition-colors hover:border-accent hover:text-accent"
+            >
+              Explore Mission
+            </Link>
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-3 text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
+            <Link to="/about" className="transition-colors hover:text-accent">
+              About
+            </Link>
+            <Link to="/gallery" className="transition-colors hover:text-accent">
+              Gallery
+            </Link>
+            <Link to="/contact" className="transition-colors hover:text-accent">
+              Contact
+            </Link>
+          </div>
         </div>
       </div>
     </div>
