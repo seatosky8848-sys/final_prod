@@ -1,9 +1,9 @@
 [build]
-  command = "bun run build"
+  command = "npm run build"
   publish = "dist/client"
 
 [build.environment]
-  BUN_VERSION = "1.2.21"
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"

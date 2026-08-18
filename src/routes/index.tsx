@@ -19,10 +19,24 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Sea to Sky — Ajay Lalwani | Vision Beyond Sight" },
-      { name: "description", content: "A historic cycling and mountaineering expedition from India's coastline to the summit of Mount Everest, led by visually impaired endurance athlete Ajay Lalwani." },
+      {
+        name: "description",
+        content:
+          "A historic cycling and mountaineering expedition from India's coastline to the summit of Mount Everest, led by visually impaired endurance athlete Ajay Lalwani.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Ajay Lalwani, Sea to Sky, Everest summit, visually impaired athlete, cycling expedition, mountaineering India, support mission",
+      },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
       { property: "og:title", content: "Sea to Sky — Ajay Lalwani" },
-      { property: "og:description", content: "A documentary expedition redefining the limits of human endurance." },
+      {
+        property: "og:description",
+        content: "A documentary expedition redefining the limits of human endurance.",
+      },
       { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -30,11 +44,41 @@ export const Route = createFileRoute("/")({
 });
 
 const timeline = [
-  { year: "2019", title: "Cross-Country India Ride", location: "Kanyakumari → Kashmir", desc: "A 7,500km solo cycling expedition along the spine of India, advocating for visually impaired athletes.", img: t1 },
-  { year: "2021", title: "Khardung La", location: "Ladakh, 5,359 m", desc: "Cycled one of the highest motorable passes in the world — a proving ground for higher ambitions.", img: t2 },
-  { year: "2023", title: "Himalayan Training", location: "Uttarakhand", desc: "Sub-zero conditioning, sensory navigation, and rope work alongside elite mountaineering coaches.", img: t3 },
-  { year: "2024", title: "Everest Base Camp", location: "5,364 m, Nepal", desc: "A reconnaissance trek to the foot of the world's highest peak — and a rehearsal for the summit.", img: t4 },
-  { year: "2026", title: "Everest Summit Mission", location: "8,848 m, Nepal", desc: "The Sea-to-Sky finale — a historic attempt as one of the first visually impaired summiteers.", img: t5 },
+  {
+    year: "2019",
+    title: "Cross-Country India Ride",
+    location: "Kanyakumari → Kashmir",
+    desc: "A 7,500km solo cycling expedition along the spine of India, advocating for visually impaired athletes.",
+    img: t1,
+  },
+  {
+    year: "2021",
+    title: "Khardung La",
+    location: "Ladakh, 5,359 m",
+    desc: "Cycled one of the highest motorable passes in the world — a proving ground for higher ambitions.",
+    img: t2,
+  },
+  {
+    year: "2023",
+    title: "Himalayan Training",
+    location: "Uttarakhand",
+    desc: "Sub-zero conditioning, sensory navigation, and rope work alongside elite mountaineering coaches.",
+    img: t3,
+  },
+  {
+    year: "2024",
+    title: "Everest Base Camp",
+    location: "5,364 m, Nepal",
+    desc: "A reconnaissance trek to the foot of the world's highest peak — and a rehearsal for the summit.",
+    img: t4,
+  },
+  {
+    year: "2026",
+    title: "Everest Summit Mission",
+    location: "8,848 m, Nepal",
+    desc: "The Sea-to-Sky finale — a historic attempt as one of the first visually impaired summiteers.",
+    img: t5,
+  },
 ];
 
 function Home() {
@@ -80,12 +124,17 @@ function Hero() {
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-4 text-4xl leading-[0.88] tracking-[-0.03em] text-white sm:mt-5 sm:text-5xl md:text-6xl lg:text-[7.2rem] xl:text-[8.8rem]">
-              SEA<br />TO<br />SKY
+              SEA
+              <br />
+              TO
+              <br />
+              SKY
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-4 max-w-2xl text-[16px] leading-[1.35] text-white/80 sm:mt-6 sm:text-[18px] md:text-[20px] lg:text-[24px]">
-              A visually impaired athlete has traversed India by bicycle, scaled 285+ forts, reached Everest Base Camp, and now prepares for a historic summit attempt on Mount Everest.
+              He has traversed India by bicycle, scaled 285+ forts, reached Everest Base Camp, and
+              now stands on the threshold of a historic summit attempt on Mount Everest.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -117,7 +166,6 @@ function Hero() {
             </div>
           </Reveal>
         </div>
-
       </div>
     </section>
   );
@@ -147,7 +195,8 @@ function RouteMapSection() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p className="mt-6 text-[15px] leading-[1.75] text-white/70 sm:text-[16px]">
-                  From Mumbai to Kashmir, then to Kanyakumari and back again, the route spans the country with a single purpose: to turn endurance into a message of possibility.
+                  From Mumbai to Kashmir, then to Kanyakumari and back again, the route spans the
+                  country with a single purpose: to turn endurance into a message of possibility.
                 </p>
               </Reveal>
               <Reveal delay={0.15}>
@@ -163,7 +212,9 @@ function RouteMapSection() {
               <div className="rounded-[28px] border border-white/10 bg-[#0d0d0d] p-5 text-[#f5f4f1] md:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/55">Journey Path</p>
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/55">
+                      Journey Path
+                    </p>
                     <p className="mt-1 font-display text-xl">From coast to summit</p>
                   </div>
                   <div className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-white/60">
@@ -178,7 +229,9 @@ function RouteMapSection() {
                       <div key={point.place + index} className="relative pl-8">
                         <div className="absolute left-0 top-2 h-[10px] w-[10px] rounded-full border border-[#4169E1] bg-[#f5f4f1]" />
                         <p className="font-display text-lg text-[#f5f4f1]">{point.place}</p>
-                        <p className="mt-1 text-[13px] leading-[1.6] text-white/65">{point.detail}</p>
+                        <p className="mt-1 text-[13px] leading-[1.6] text-white/65">
+                          {point.detail}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -186,7 +239,9 @@ function RouteMapSection() {
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-3">
                   <div className="rounded-[16px] border border-white/10 bg-white/5 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">Distance</p>
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">
+                      Distance
+                    </p>
                     <p className="mt-2 font-display text-2xl">7,500+</p>
                   </div>
                   <div className="rounded-[16px] border border-white/10 bg-white/5 p-4">
@@ -244,10 +299,14 @@ function Narrative() {
             <Reveal delay={0.1}>
               <div className="mt-8 max-w-xl space-y-5 text-[15.5px] leading-[1.75] text-foreground/80">
                 <p>
-                  Ajay Lalwani is more than an athlete. He is a living testament to endurance, discipline, and purpose. A visually impaired cyclist, mountaineer, and national medalist, he is preparing for his most ambitious chapter yet — Mount Everest.
+                  Ajay Lalwani is more than an athlete. He is a living testament to endurance,
+                  discipline, and purpose. A visually impaired cyclist, mountaineer, and national
+                  medalist, he is preparing for his most ambitious chapter yet — Mount Everest.
                 </p>
                 <p>
-                  From cycling 7,500 km across India to scaling 285 forts on foot, his journey is a powerful demonstration that perceived limits can be rewritten. Every milestone carries a larger message of inclusion, resilience, and possibility.
+                  From cycling 7,500 km across India to scaling 285 forts on foot, his journey is a
+                  powerful demonstration that perceived limits can be rewritten. Every milestone
+                  carries a larger message of inclusion, resilience, and possibility.
                 </p>
               </div>
             </Reveal>
@@ -300,8 +359,14 @@ function Timeline() {
         </div>
       </div>
 
-      <div ref={scrollerRef} className="overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar">
-        <div className="flex gap-4 px-4 pb-4 sm:gap-6 sm:px-6 md:px-10" style={{ minWidth: "min-content" }}>
+      <div
+        ref={scrollerRef}
+        className="overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
+      >
+        <div
+          className="flex gap-4 px-4 pb-4 sm:gap-6 sm:px-6 md:px-10"
+          style={{ minWidth: "min-content" }}
+        >
           {timeline.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.05}>
               <article className="w-[84vw] shrink-0 snap-start rounded-[28px] border border-border bg-[#f5f4f1] p-3 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] sm:w-[320px] md:w-[400px]">
@@ -319,7 +384,9 @@ function Timeline() {
                 <div className="mt-5">
                   <p className="eyebrow">{item.location}</p>
                   <h3 className="mt-2 font-display text-2xl">{item.title}</h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">{item.desc}</p>
+                  <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
+                    {item.desc}
+                  </p>
                 </div>
               </article>
             </Reveal>
@@ -351,7 +418,9 @@ function Stats() {
               <p className="font-display text-4xl tracking-tight sm:text-5xl md:text-6xl">
                 <Counter value={s.v} suffix={s.suf} />
               </p>
-              <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-[#f5f4f1]/55">{s.label}</p>
+              <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-[#f5f4f1]/55">
+                {s.label}
+              </p>
             </Reveal>
           ))}
         </div>
@@ -388,7 +457,9 @@ function Mission() {
   const [form, setForm] = useState({ name: "", email: "", org: "", message: "" });
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Request received", { description: "Our team will share the sponsorship deck within 48 hours." });
+    toast.success("Request received", {
+      description: "Our team will share the sponsorship deck within 48 hours.",
+    });
     setForm({ name: "", email: "", org: "", message: "" });
   };
 
@@ -401,7 +472,11 @@ function Mission() {
               <p className="eyebrow">— Contribution</p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="display-xl mt-5">Support<br />the Mission.</h2>
+              <h2 className="display-xl mt-5">
+                Support
+                <br />
+                the Mission.
+              </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-7 text-[15.5px] leading-[1.75] text-foreground/75 max-w-lg">
@@ -414,18 +489,26 @@ function Mission() {
             <Reveal delay={0.15}>
               <div className="mt-10 space-y-4">
                 <div className="flex items-start gap-4 border border-border bg-[#f5f4f1] p-4 sm:gap-5 sm:p-5">
-                  <span className="font-display text-xs tracking-widest uppercase text-accent mt-1">UPI</span>
+                  <span className="font-display text-xs tracking-widest uppercase text-accent mt-1">
+                    UPI
+                  </span>
                   <div>
                     <p className="eyebrow">UPI Payment</p>
-                    <p className="font-display text-lg mt-1">ajaylalwani@upi</p>
+                    <p className="font-display text-lg mt-1">ajaylalwani315-1@oksbi</p>
                   </div>
                 </div>
                 <div className="bg-[#f5f4f1] border border-border p-5 flex items-start gap-5">
-                  <span className="font-display text-xs tracking-widest uppercase text-accent mt-1">Bank</span>
+                  <span className="font-display text-xs tracking-widest uppercase text-accent mt-1">
+                    Bank
+                  </span>
                   <div>
                     <p className="eyebrow">Bank Transfer</p>
-                    <p className="font-display text-lg mt-1">HDFC Bank · A/C 5010042XXXXXXX</p>
-                    <p className="text-[13px] text-muted-foreground mt-0.5">IFSC: HDFC000XXXX</p>
+                    <p className="font-display text-lg mt-1">Bank of Baroda · Worli, Mumbai</p>
+                    <p className="text-[13px] text-muted-foreground mt-0.5">A/C: 04220100020053</p>
+                    <p className="text-[13px] text-muted-foreground mt-0.5">IFSC: BARBOWORLIX</p>
+                    <p className="text-[13px] text-muted-foreground mt-0.5">
+                      A/C Name: Ajay Nanakram Lalwani
+                    </p>
                   </div>
                 </div>
               </div>
@@ -438,16 +521,36 @@ function Mission() {
               className="border border-border bg-[#f5f4f1] p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.2)] sm:p-8 md:p-10"
             >
               <p className="eyebrow text-accent">— Become a sponsor</p>
-              <h3 className="display-lg mt-3">Join a Collective<br />of Visionary Brands.</h3>
+              <h3 className="display-lg mt-3">
+                Join a Collective
+                <br />
+                of Visionary Brands.
+              </h3>
               <p className="mt-4 text-[14px] text-muted-foreground">
                 Partner with extraordinary human achievement. We respond to every inquiry within 48
                 hours.
               </p>
 
               <div className="mt-8 space-y-6">
-                <Field label="Full Name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} placeholder="Your name" />
-                <Field label="Email Address" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="you@brand.com" />
-                <Field label="Organization" value={form.org} onChange={(v) => setForm({ ...form, org: v })} placeholder="Brand or company" />
+                <Field
+                  label="Full Name"
+                  value={form.name}
+                  onChange={(v) => setForm({ ...form, name: v })}
+                  placeholder="Your name"
+                />
+                <Field
+                  label="Email Address"
+                  type="email"
+                  value={form.email}
+                  onChange={(v) => setForm({ ...form, email: v })}
+                  placeholder="you@brand.com"
+                />
+                <Field
+                  label="Organization"
+                  value={form.org}
+                  onChange={(v) => setForm({ ...form, org: v })}
+                  placeholder="Brand or company"
+                />
                 <div>
                   <label className="eyebrow block mb-2">Message</label>
                   <textarea
@@ -475,8 +578,18 @@ function Mission() {
 }
 
 function Field({
-  label, value, onChange, placeholder, type = "text",
-}: { label: string; value: string; onChange: (v: string) => void; placeholder?: string; type?: string }) {
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
+}) {
   return (
     <div>
       <label className="eyebrow block mb-2">{label}</label>

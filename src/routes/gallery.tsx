@@ -21,9 +21,16 @@ export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
       { title: "Visual Testimony — Gallery | Ajay Lalwani" },
-      { name: "description", content: "Documenting endurance, exploration, and the quiet resilience of the human spirit. Editorial photography from the Sea-to-Sky expedition." },
+      {
+        name: "description",
+        content:
+          "Documenting endurance, exploration, and the quiet resilience of the human spirit. Editorial photography from the Sea-to-Sky expedition.",
+      },
       { property: "og:title", content: "Visual Testimony — Ajay Lalwani Gallery" },
-      { property: "og:description", content: "Editorial photography from the Sea-to-Sky expedition." },
+      {
+        property: "og:description",
+        content: "Editorial photography from the Sea-to-Sky expedition.",
+      },
       { property: "og:url", content: "/gallery" },
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
@@ -60,8 +67,10 @@ function GalleryPage() {
     if (lightbox === null) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightbox(null);
-      if (e.key === "ArrowRight") setLightbox((i) => (i === null ? null : (i + 1) % filtered.length));
-      if (e.key === "ArrowLeft") setLightbox((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length));
+      if (e.key === "ArrowRight")
+        setLightbox((i) => (i === null ? null : (i + 1) % filtered.length));
+      if (e.key === "ArrowLeft")
+        setLightbox((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length));
     };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -75,9 +84,15 @@ function GalleryPage() {
     <>
       <section className="pt-36 md:pt-44 pb-16">
         <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-          <Reveal><p className="eyebrow">— Chronicle</p></Reveal>
+          <Reveal>
+            <p className="eyebrow">— Chronicle</p>
+          </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="display-xxl mt-6">Visual<br />Testimony.</h1>
+            <h1 className="display-xxl mt-6">
+              Visual
+              <br />
+              Testimony.
+            </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-10 text-[16px] leading-relaxed text-muted-foreground max-w-xl">
@@ -137,7 +152,9 @@ function GalleryPage() {
             <X size={20} />
           </button>
           <button
-            onClick={() => setLightbox((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length))}
+            onClick={() =>
+              setLightbox((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length))
+            }
             aria-label="Previous"
             className="absolute left-4 md:left-8 h-11 w-11 rounded-full bg-white/10 text-white inline-flex items-center justify-center hover:bg-white/20"
           >

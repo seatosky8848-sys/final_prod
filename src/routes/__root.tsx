@@ -28,7 +28,8 @@ function NotFoundComponent() {
             This page is off the route.
           </h2>
           <p className="mt-4 max-w-xl text-[15px] leading-[1.75] text-muted-foreground sm:text-[16px]">
-            The trail you were looking for seems to have moved. You can return to the expedition home, explore the mission, or head to the gallery for a deeper view of the journey.
+            The trail you were looking for seems to have moved. You can return to the expedition
+            home, explore the mission, or head to the gallery for a deeper view of the journey.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -79,12 +80,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="h-11 px-5 rounded-full bg-foreground text-background text-xs tracking-widest uppercase"
           >
             Try again
           </button>
-          <a href="/" className="h-11 px-5 rounded-full border border-border inline-flex items-center text-xs tracking-widest uppercase">
+          <a
+            href="/"
+            className="h-11 px-5 rounded-full border border-border inline-flex items-center text-xs tracking-widest uppercase"
+          >
             Go home
           </a>
         </div>
@@ -99,10 +106,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Ajay Lalwani — Sea to Sky | Vision Beyond Sight" },
-      { name: "description", content: "A documentary expedition from India's coastline to the summit of Mount Everest. Endurance, accessibility, and the resilience of the human spirit." },
+      {
+        name: "description",
+        content:
+          "A documentary expedition from India's coastline to the summit of Mount Everest. Endurance, accessibility, and the resilience of the human spirit.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Ajay Lalwani, Sea to Sky, Everest summit, visually impaired athlete, cycling expedition, endurance athlete, mountaineering India",
+      },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "author", content: "Ajay Lalwani" },
       { property: "og:site_name", content: "Ajay Lalwani" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/hero-mountain.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Ajay Lalwani — Sea to Sky" },
+      {
+        name: "twitter:description",
+        content: "A historic journey from the Indian coastline to the summit of Everest.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

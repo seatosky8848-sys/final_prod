@@ -30,7 +30,10 @@ export function SiteNav() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-4 sm:px-6 md:px-10">
-        <Link to="/" className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-[28px]">
+        <Link
+          to="/"
+          className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-[28px]"
+        >
           Ajay Lalwani
         </Link>
 
