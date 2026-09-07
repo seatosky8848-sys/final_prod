@@ -478,8 +478,9 @@ function Mission() {
       });
       setForm({ name: "", email: "", org: "", message: "" });
     } catch {
-      toast.error("We could not send your enquiry", {
-        description: "Please email seatosky8848@gmail.com directly.",
+      toast.error("We couldn't send your enquiry", {
+        description:
+          "Please send your name, organization, email, and message to seatosky8848@gmail.com.",
       });
     } finally {
       setSubmitting(false);
