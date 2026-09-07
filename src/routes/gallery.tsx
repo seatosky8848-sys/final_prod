@@ -3,19 +3,45 @@ import { useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 
-import g1 from "../assets/gallery-1.jpg";
-import g2 from "../assets/gallery-2.jpg";
-import g3 from "../assets/gallery-3.jpg";
-import g4 from "../assets/gallery-4.jpg";
-import g5 from "../assets/gallery-5.jpg";
-import g6 from "../assets/gallery-6.jpg";
-import g7 from "../assets/gallery-7.jpg";
-import g8 from "../assets/gallery-8.jpg";
-import g9 from "../assets/gallery-9.jpg";
-import t1 from "../assets/timeline-1.jpg";
-import t2 from "../assets/timeline-2.jpg";
-import t4 from "../assets/timeline-4.jpg";
-import t5 from "../assets/timeline-5.jpg";
+import cyclingImage from "../assets/1000304720.jpeg";
+import g4 from "../assets/everest/1000307598.webp";
+import g5 from "../assets/everest/1000307601.webp";
+import g7 from "../assets/everest/1000307604.webp";
+import g8 from "../assets/1000304711.jpeg";
+import g9 from "../assets/News Artical/1000304963.jpeg";
+import cert1 from "../assets/Screenshot_20260818_131009_Samsung.jpeg";
+import cert2 from "../assets/Screenshot_20260818_131115_Samsung.jpeg";
+import cert3 from "../assets/IMG-20260711-WA0002.jpeg";
+import certA from "../assets/Certificate/1000304470.jpeg";
+import certB from "../assets/Certificate/1000304471.jpeg";
+import certC from "../assets/Certificate/1000304472.jpeg";
+import certD from "../assets/Certificate/1000304474.jpeg";
+import certE from "../assets/Certificate/1000304475.jpeg";
+import certF from "../assets/Certificate/1000304770.jpeg";
+import certG from "../assets/Certificate/1000304775.jpeg";
+import certH from "../assets/Certificate/1000304781.jpeg";
+import certI from "../assets/Certificate/1000304784.jpeg";
+import certJ from "../assets/Certificate/1000304962.jpeg";
+import certK from "../assets/Certificate/1000305012.jpeg";
+import certL from "../assets/Certificate/1000307065.webp";
+import certM from "../assets/Certificate/1000307068.webp";
+import medal1 from "../assets/Medals/1000307054.webp";
+import medal2 from "../assets/Medals/1000307059.webp";
+import medal3 from "../assets/Medals/1000307062.webp";
+import medal4 from "../assets/Medals/1000307071.webp";
+import medal5 from "../assets/Medals/1000307074.webp";
+import medal6 from "../assets/Medals/1000307077.webp";
+import medal7 from "../assets/Medals/1000307080.webp";
+import medal8 from "../assets/Medals/1000307083.webp";
+import media1 from "../assets/1000307378.webp";
+import media2 from "../assets/1000307371.webp";
+import news1 from "../assets/News Artical/1000304963.jpeg";
+import news2 from "../assets/News Artical/1000304965.jpeg";
+import news3 from "../assets/News Artical/1000304967.jpeg";
+import news4 from "../assets/News Artical/1000305028.jpeg";
+import news5 from "../assets/News Artical/1000305030.jpeg";
+import news6 from "../assets/News Artical/1000305032.jpeg";
+import { absoluteUrl } from "../lib/site";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -31,32 +57,149 @@ export const Route = createFileRoute("/gallery")({
         property: "og:description",
         content: "Editorial photography from the Sea-to-Sky expedition.",
       },
-      { property: "og:url", content: "/gallery" },
+      { property: "og:url", content: absoluteUrl("/gallery") },
     ],
-    links: [{ rel: "canonical", href: "/gallery" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/gallery") }],
   }),
   component: GalleryPage,
 });
 
-type Cat = "All" | "Cycling" | "Everest" | "Training" | "Medals" | "Expeditions" | "Media";
+type Cat =
+  | "All"
+  | "Cycling"
+  | "Everest"
+  | "Training"
+  | "Medals"
+  | "Certification"
+  | "News Article"
+  | "Media";
 
-const photos: { src: string; alt: string; cat: Exclude<Cat, "All">[] }[] = [
-  { src: t1, alt: "Desert highway sunrise ride", cat: ["Cycling", "Expeditions"] },
-  { src: g2, alt: "Bicycle resting against Himalayan stone wall", cat: ["Cycling"] },
-  { src: g3, alt: "Endurance medals", cat: ["Medals"] },
-  { src: g4, alt: "Misty Himalayan valley at dawn", cat: ["Everest", "Expeditions"] },
-  { src: g5, alt: "Mountaineer portrait with frost", cat: ["Everest", "Training"] },
-  { src: g6, alt: "Cyclist riding into mountain valley", cat: ["Cycling", "Expeditions"] },
-  { src: g7, alt: "Himalayan peaks editorial illustration", cat: ["Everest"] },
-  { src: g8, alt: "Tying running shoes at sunrise", cat: ["Training"] },
-  { src: g9, alt: "Behind the scenes filming", cat: ["Media"] },
-  { src: t2, alt: "Khardung La pass with prayer flags", cat: ["Expeditions"] },
-  { src: t4, alt: "Everest base camp at dusk", cat: ["Everest"] },
-  { src: t5, alt: "Climber on summit ridge at sunrise", cat: ["Everest"] },
-  { src: g1, alt: "Hands gripping bicycle handlebar", cat: ["Cycling", "Training"] },
+const certificateCollection = [
+  {
+    src: certA,
+    alt: "Certificate recognition archive 1",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certB,
+    alt: "Certificate recognition archive 2",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certC,
+    alt: "Certificate recognition archive 3",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certD,
+    alt: "Certificate recognition archive 4",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certE,
+    alt: "Certificate recognition archive 5",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certF,
+    alt: "Certificate recognition archive 6",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certG,
+    alt: "Certificate recognition archive 7",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certH,
+    alt: "Certificate recognition archive 8",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certI,
+    alt: "Certificate recognition archive 9",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certJ,
+    alt: "Certificate recognition archive 10",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certK,
+    alt: "Certificate recognition archive 11",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certL,
+    alt: "Indo-Nepal Cycling Adventure certificate",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
+  {
+    src: certM,
+    alt: "Certificate of honor for Ajay Lalwani",
+    cat: ["Certification"] as Exclude<Cat, "All">[],
+  },
 ];
 
-const filters: Cat[] = ["All", "Cycling", "Everest", "Training", "Medals", "Expeditions", "Media"];
+const medalCollection = [
+  { src: medal1, alt: "Lions International state-level swimming championship trophy" },
+  { src: medal2, alt: "IBSA Sports Championship runner-up trophy" },
+  { src: medal3, alt: "Race Across India cycling achievement award" },
+  { src: medal4, alt: "Race Across India 3,758 km cycling medal" },
+  { src: medal5, alt: "International sports achievement medal" },
+  { src: medal6, alt: "Endurance cycling achievement medal" },
+  { src: medal7, alt: "Cycling championship medal" },
+  { src: medal8, alt: "Endurance sports medal" },
+].map((medal) => ({
+  ...medal,
+  cat: ["Medals"] as Exclude<Cat, "All">[],
+}));
+
+const photos: { src: string; alt: string; cat: Exclude<Cat, "All">[] }[] = [
+  {
+    src: cert1,
+    alt: "Bravo International World Record Certificate - 7,500 Km Cycling",
+    cat: ["Certification"],
+  },
+  {
+    src: cert2,
+    alt: "Bravo International World Record Certificate - 3,758 Km Ultracycling",
+    cat: ["Certification"],
+  },
+  {
+    src: cert3,
+    alt: "Ajay Lalwani displaying World Record Certificates and Trophies",
+    cat: ["Certification"],
+  },
+  ...certificateCollection,
+  ...medalCollection,
+  { src: news1, alt: "News article feature 1", cat: ["News Article"] },
+  { src: news2, alt: "News article feature 2", cat: ["News Article"] },
+  { src: news3, alt: "News article feature 3", cat: ["News Article"] },
+  { src: news4, alt: "News article feature 4", cat: ["News Article"] },
+  { src: news5, alt: "News article feature 5", cat: ["News Article"] },
+  { src: news6, alt: "News article feature 6", cat: ["News Article"] },
+  { src: g4, alt: "Misty Himalayan valley at dawn", cat: ["Everest"] },
+  { src: g5, alt: "Mountaineer portrait with frost", cat: ["Everest", "Training"] },
+  { src: g7, alt: "Himalayan peaks editorial feature", cat: ["Everest"] },
+  { src: g8, alt: "Tying running shoes at sunrise", cat: ["Training"] },
+  { src: g9, alt: "Press coverage and documentary filming", cat: ["Media", "News Article"] },
+  { src: cyclingImage, alt: "Cyclist riding at dusk", cat: ["Cycling"] },
+  { src: media1, alt: "Ajay Lalwani media feature 1", cat: ["Media"] },
+  { src: media2, alt: "Ajay Lalwani media feature 2", cat: ["Media"] },
+];
+
+const filters: Cat[] = [
+  "All",
+  "Cycling",
+  "Everest",
+  "Training",
+  "Medals",
+  "Certification",
+  "News Article",
+  "Media",
+];
 
 function GalleryPage() {
   const [active, setActive] = useState<Cat>("All");
@@ -128,7 +271,7 @@ function GalleryPage() {
               <button
                 key={p.src + i}
                 onClick={() => setLightbox(i)}
-                className="block w-full mb-6 break-inside-avoid overflow-hidden bg-muted group"
+                className="block w-full mb-6 break-inside-avoid overflow-hidden border border-black/15 bg-muted group"
               >
                 <img
                   src={p.src}

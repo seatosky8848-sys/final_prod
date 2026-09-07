@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 
 const links = [
   { to: "/", label: "The Journey" },
@@ -21,6 +22,10 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const goHome = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -32,6 +37,7 @@ export function SiteNav() {
       <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-4 sm:px-6 md:px-10">
         <Link
           to="/"
+          onClick={goHome}
           className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-[28px]"
         >
           Ajay Lalwani
@@ -68,29 +74,39 @@ export function SiteNav() {
         </div>
       </div>
 
-      {open && (
-        <div className="lg:hidden bg-[#f5f4f1] border-t border-border">
-          <div className="px-6 py-6 flex flex-col gap-5">
-            {links.map((l) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden overflow-hidden border-t border-border bg-[#f5f4f1]"
+          >
+            <div className="flex flex-col gap-5 px-6 py-6">
+              {links.map((l, index) => (
+                <motion.div
+                  key={l.to}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.04, duration: 0.3 }}
+                >
+                  <Link to={l.to} onClick={() => setOpen(false)} className="font-display text-2xl">
+                    {l.label}
+                  </Link>
+                </motion.div>
+              ))}
               <Link
-                key={l.to}
-                to={l.to}
+                to="/contact"
                 onClick={() => setOpen(false)}
-                className="font-display text-2xl"
+                className="mt-3 inline-flex h-12 items-center justify-center rounded-full bg-[#050505] text-sm font-medium uppercase tracking-wider text-[#f5f4f1]"
               >
-                {l.label}
+                Support Mission
               </Link>
-            ))}
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-3 inline-flex items-center justify-center h-12 rounded-full bg-[#050505] text-[#f5f4f1] text-sm font-medium tracking-wider uppercase"
-            >
-              Support Mission
-            </Link>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

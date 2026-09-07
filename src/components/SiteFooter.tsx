@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Youtube, Mail } from "lucide-react";
 
+/* Copyright (c) 2026 Rootops Technologies. All rights reserved. */
 export function SiteFooter() {
   return (
     <footer className="bg-[#ecebe7] mt-32">
@@ -77,19 +78,19 @@ export function SiteFooter() {
             <p className="eyebrow mb-5">Legal</p>
             <ul className="space-y-3 text-[14px]">
               <li>
-                <a href="/contact#terms-and-conditions" className="hover:text-accent">
+                <Link to="/terms-and-conditions" className="hover:text-accent">
                   Terms & Conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact#privacy-policy" className="hover:text-accent">
+                <Link to="/privacy-policy" className="hover:text-accent">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact#payment-policy" className="hover:text-accent">
+                <Link to="/payment-policy" className="hover:text-accent">
                   Payment Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -97,7 +98,17 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:mt-20 md:flex-row md:items-center">
           <p>© 2026 Ajay Lalwani. Vision Beyond Sight.</p>
-          <p>Crafted with intention.</p>
+          <p>
+            Designed &amp; developed by{" "}
+            <a
+              href="https://www.rootopstechnologies.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-accent"
+            >
+              Rootops Technologies
+            </a>
+          </p>
         </div>
       </div>
     </footer>

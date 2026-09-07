@@ -2,14 +2,21 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "@tanstack/react-router";
 
+import { SmoothScroll } from "./components/SmoothScroll";
 import { getRouter } from "./router";
 
 const router = getRouter();
 
 const redirectPath = window.location.search.match(/p=([^&]+)/);
 if (redirectPath) {
-  const target = decodeURIComponent(redirectPath[1]);
-  window.history.replaceState({}, "", target);
+  try {
+    const target = decodeURIComponent(redirectPath[1]);
+    if (target.startsWith("/") && !target.startsWith("//")) {
+      window.history.replaceState({}, "", target);
+    }
+  } catch {
+    window.history.replaceState({}, "", "/");
+  }
 }
 
 const rootElement = document.getElementById("root");
@@ -20,6 +27,8 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <SmoothScroll>
+      <RouterProvider router={router} />
+    </SmoothScroll>
   </StrictMode>,
 );

@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "../components/Reveal";
 import missionHero from "../assets/mission-hero.jpg";
 import t1 from "../assets/timeline-1.jpg";
-import t2 from "../assets/timeline-2.jpg";
 import t3 from "../assets/timeline-3.jpg";
 import t4 from "../assets/timeline-4.jpg";
 import t5 from "../assets/timeline-5.jpg";
+import { absoluteUrl } from "../lib/site";
 
 export const Route = createFileRoute("/mission")({
   head: () => ({
@@ -24,10 +24,10 @@ export const Route = createFileRoute("/mission")({
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "The Sea-to-Sky Mission" },
       { property: "og:description", content: "From the Arabian Sea to the summit of Everest." },
-      { property: "og:url", content: "/mission" },
+      { property: "og:url", content: absoluteUrl("/mission") },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/mission" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/mission") }],
   }),
   component: MissionPage,
 });
@@ -176,6 +176,3 @@ function MissionPage() {
     </>
   );
 }
-
-// timeline-2 used only via gallery; keep silenced import via void
-void t2;

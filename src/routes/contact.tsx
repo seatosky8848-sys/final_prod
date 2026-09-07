@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MessageSquare, Mail, Instagram, Facebook, Youtube, ArrowRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import qrImage from "../assets/IMG-20260818-WA0000.jpeg";
+import { absoluteUrl } from "../lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -20,10 +21,10 @@ export const Route = createFileRoute("/contact")({
       { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Be Part of the Mission — Ajay Lalwani" },
       { property: "og:description", content: "Sponsorships, media, and ways to contribute." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: absoluteUrl("/contact") },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
   component: ContactPage,
 });
@@ -112,18 +113,17 @@ function ContactPage() {
               </Reveal>
 
               <Reveal delay={0.1}>
-                <div className="bg-[#ecebe7] p-7" id="privacy-policy">
+                <div className="bg-[#ecebe7] p-7">
                   <h3 className="font-display text-2xl">Sponsorships</h3>
                   <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                    Partner with a global documentary project that redefines human limits. We offer
-                    unique storytelling assets and high-impact brand visibility for corporate
-                    partners.
+                    Explore a meaningful partnership with a documentary expedition built around
+                    endurance, accessibility, and human possibility.
                   </p>
                   <a
-                    href="mailto:seatosky8848@gmail.com?subject=Sponsorship Deck Request"
+                    href="mailto:seatosky8848@gmail.com?subject=Partnership%20Enquiry"
                     className="inline-flex items-center gap-2 mt-5 text-[12px] tracking-[0.2em] uppercase font-medium text-accent group"
                   >
-                    Request Deck
+                    Discuss a Partnership
                     <ArrowRight
                       size={14}
                       className="transition-transform group-hover:translate-x-1"
@@ -181,37 +181,6 @@ function ContactPage() {
                   <p className="eyebrow mt-4">Scan to pay with any UPI app</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="pb-24">
-        <div className="max-w-[1100px] mx-auto px-6 md:px-10">
-          <div className="grid gap-10 md:grid-cols-3">
-            <div className="bg-[#ecebe7] p-6" id="terms-and-conditions">
-              <p className="eyebrow">— Terms & Conditions</p>
-              <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">
-                Contributions made to support the expedition are voluntary and used for logistical,
-                training, and expedition-related costs. Donations are acknowledged for support
-                purposes and are not exchangeable for goods or services unless otherwise agreed in
-                writing.
-              </p>
-            </div>
-            <div className="bg-[#ecebe7] p-6" id="privacy-policy">
-              <p className="eyebrow">— Privacy Policy</p>
-              <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">
-                Personal data shared through this website or contact forms is used only to respond
-                to sponsorship, media, and support requests. Information is not sold or shared with
-                third parties, except when required for payment or legal compliance.
-              </p>
-            </div>
-            <div className="bg-[#ecebe7] p-6" id="payment-policy">
-              <p className="eyebrow">— Payment Policy</p>
-              <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">
-                Payments may be made via UPI or bank transfer using the details shown on this page.
-                Please confirm the exact account name, IFSC, and UPI ID before sending funds.
-              </p>
             </div>
           </div>
         </div>

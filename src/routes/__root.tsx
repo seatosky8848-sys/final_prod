@@ -5,15 +5,13 @@ import {
   createRootRouteWithContext,
   useRouter,
   HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteNav } from "../components/SiteNav";
 import { SiteFooter } from "../components/SiteFooter";
 import { Toaster } from "sonner";
+import { absoluteUrl, SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -67,9 +65,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -120,15 +115,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Ajay Lalwani" },
       { property: "og:site_name", content: "Ajay Lalwani" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/hero-mountain.jpg" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: absoluteUrl("/hero-mountain.jpg") },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Ajay Lalwani — Sea to Sky" },
+      { name: "twitter:image", content: absoluteUrl("/hero-mountain.jpg") },
       {
         name: "twitter:description",
         content: "A historic journey from the Indian coastline to the summit of Everest.",
       },
     ],
     links: [
+      { rel: "canonical", href: SITE_URL },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -138,36 +137,43 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
 
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
-    <QueryClientProvider client={queryClient}>
-      <SiteNav />
-      <main className="min-h-screen">
-        <Outlet />
-      </main>
-      <SiteFooter />
-      <Toaster position="bottom-right" />
-    </QueryClientProvider>
+    <>
+      <HeadContent />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Ajay Lalwani",
+            url: SITE_URL,
+            description:
+              "Visually impaired endurance athlete, cyclist, and mountaineer leading the Sea to Sky expedition.",
+            sameAs: [
+              "https://www.instagram.com/ajay.lalwani.9277/",
+              "https://www.facebook.com/share/1JYzBbviMY/",
+              "https://youtu.be/xmQ_s_z2XII",
+            ],
+            knowsAbout: ["Endurance cycling", "Mountaineering", "Visual accessibility"],
+          }),
+        }}
+      />
+      <QueryClientProvider client={queryClient}>
+        <SiteNav />
+        <main className="min-h-screen">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <Toaster position="bottom-right" />
+      </QueryClientProvider>
+    </>
   );
 }

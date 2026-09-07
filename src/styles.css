@@ -74,6 +74,12 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
   body {
     background-color: var(--color-background);
@@ -82,6 +88,19 @@
     font-feature-settings: "ss01", "cv11";
     line-height: 1.6;
     overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
   }
   img, video {
     display: block;
@@ -158,5 +177,19 @@
 
   .soft-shadow {
     box-shadow: 0 20px 60px -30px rgba(0, 0, 0, 0.24);
+  }
+
+  .hero-drift {
+    animation: hero-drift 18s ease-in-out infinite alternate;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(-0.8%, -0.6%, 0);
   }
 }

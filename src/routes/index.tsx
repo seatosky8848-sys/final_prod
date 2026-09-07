@@ -5,15 +5,16 @@ import { ArrowRight, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { toast } from "sonner";
 
 import heroImg from "../assets/hero-mountain.jpg";
-import portraitImg from "../assets/portrait-ajay.jpg";
-import t1 from "../assets/timeline-1.jpg";
-import t2 from "../assets/timeline-2.jpg";
-import t3 from "../assets/timeline-3.jpg";
-import t4 from "../assets/timeline-4.jpg";
+import portraitImg from "../assets/1675755_DSC09677.JPG";
+import crossCountryRide from "../assets/1000304720.jpeg";
+import khardungLa from "../assets/Ladhak.jpeg";
+import himalayanTraining from "../assets/1000304717.jpeg";
+import everestBaseCamp from "../assets/Everest Base .jpeg";
 import t5 from "../assets/timeline-5.jpg";
 
 import { Reveal } from "../components/Reveal";
 import { Counter } from "../components/Counter";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,10 +36,10 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "A documentary expedition redefining the limits of human endurance.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: SITE_URL },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: SITE_URL }],
   }),
   component: Home,
 });
@@ -49,28 +50,28 @@ const timeline = [
     title: "Cross-Country India Ride",
     location: "Kanyakumari → Kashmir",
     desc: "A 7,500km solo cycling expedition along the spine of India, advocating for visually impaired athletes.",
-    img: t1,
+    img: crossCountryRide,
   },
   {
     year: "2021",
     title: "Khardung La",
     location: "Ladakh, 5,359 m",
     desc: "Cycled one of the highest motorable passes in the world — a proving ground for higher ambitions.",
-    img: t2,
+    img: khardungLa,
   },
   {
     year: "2023",
     title: "Himalayan Training",
     location: "Uttarakhand",
     desc: "Sub-zero conditioning, sensory navigation, and rope work alongside elite mountaineering coaches.",
-    img: t3,
+    img: himalayanTraining,
   },
   {
     year: "2024",
     title: "Everest Base Camp",
     location: "5,364 m, Nepal",
     desc: "A reconnaissance trek to the foot of the world's highest peak — and a rehearsal for the summit.",
-    img: t4,
+    img: everestBaseCamp,
   },
   {
     year: "2026",
@@ -110,18 +111,13 @@ function Hero() {
           alt="Cyclist on a Himalayan mountain road at golden hour"
           width={1536}
           height={1280}
-          className="h-full w-full object-cover object-center"
+          className="hero-drift h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.55)_45%,rgba(0,0,0,0.2)_100%)]" />
       </motion.div>
 
       <div className="relative z-10 mx-auto flex min-h-[88svh] max-w-[1400px] items-end px-4 py-8 sm:px-6 sm:py-10 md:min-h-[92vh] md:px-10 md:py-16">
         <div className="max-w-3xl pb-4 sm:pb-6 md:pb-10">
-          <Reveal>
-            <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/70 sm:text-[11px]">
-              Ajay Lalwani • Sea to Sky Expedition
-            </p>
-          </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-4 text-4xl leading-[0.88] tracking-[-0.03em] text-white sm:mt-5 sm:text-5xl md:text-6xl lg:text-[7.2rem] xl:text-[8.8rem]">
               SEA
@@ -369,7 +365,7 @@ function Timeline() {
         >
           {timeline.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.05}>
-              <article className="w-[84vw] shrink-0 snap-start rounded-[28px] border border-border bg-[#f5f4f1] p-3 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] sm:w-[320px] md:w-[400px]">
+              <article className="w-[calc(100vw-2rem)] shrink-0 snap-start rounded-[28px] border border-border bg-[#f5f4f1] p-3 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] sm:w-[320px] md:w-[400px]">
                 <div className="group relative aspect-[4/3] overflow-hidden rounded-[20px] bg-muted">
                   <img
                     src={item.img}
@@ -455,12 +451,39 @@ function QuoteBlock() {
 
 function Mission() {
   const [form, setForm] = useState({ name: "", email: "", org: "", message: "" });
-  const submit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success("Request received", {
-      description: "Our team will share the sponsorship deck within 48 hours.",
-    });
-    setForm({ name: "", email: "", org: "", message: "" });
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          "form-name": "sponsorship-enquiry",
+          name: form.name,
+          email: form.email,
+          organization: form.org,
+          message: form.message,
+          "bot-field": "",
+        }).toString(),
+      });
+
+      if (!response.ok) throw new Error("Submission failed");
+
+      toast.success("Partnership enquiry received", {
+        description: "Thank you. Our team will contact you to discuss the partnership.",
+      });
+      setForm({ name: "", email: "", org: "", message: "" });
+    } catch {
+      toast.error("We could not send your enquiry", {
+        description: "Please email seatosky8848@gmail.com directly.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -517,9 +540,19 @@ function Mission() {
 
           <Reveal delay={0.1} className="lg:col-span-6">
             <form
+              name="sponsorship-enquiry"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
               onSubmit={submit}
               className="border border-border bg-[#f5f4f1] p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.2)] sm:p-8 md:p-10"
             >
+              <input type="hidden" name="form-name" value="sponsorship-enquiry" />
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Do not fill this out: <input name="bot-field" tabIndex={-1} />
+                </label>
+              </div>
               <p className="eyebrow text-accent">— Become a sponsor</p>
               <h3 className="display-lg mt-3">
                 Join a Collective
@@ -527,19 +560,21 @@ function Mission() {
                 of Visionary Brands.
               </h3>
               <p className="mt-4 text-[14px] text-muted-foreground">
-                Partner with extraordinary human achievement. We respond to every inquiry within 48
-                hours.
+                Explore a meaningful partnership around endurance, accessibility, and extraordinary
+                human achievement. We respond to every inquiry within 48 hours.
               </p>
 
               <div className="mt-8 space-y-6">
                 <Field
                   label="Full Name"
+                  name="name"
                   value={form.name}
                   onChange={(v) => setForm({ ...form, name: v })}
                   placeholder="Your name"
                 />
                 <Field
                   label="Email Address"
+                  name="email"
                   type="email"
                   value={form.email}
                   onChange={(v) => setForm({ ...form, email: v })}
@@ -547,6 +582,7 @@ function Mission() {
                 />
                 <Field
                   label="Organization"
+                  name="organization"
                   value={form.org}
                   onChange={(v) => setForm({ ...form, org: v })}
                   placeholder="Brand or company"
@@ -554,6 +590,7 @@ function Mission() {
                 <div>
                   <label className="eyebrow block mb-2">Message</label>
                   <textarea
+                    name="message"
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -565,9 +602,10 @@ function Mission() {
 
               <button
                 type="submit"
+                disabled={submitting}
                 className="mt-10 w-full h-14 bg-[#050505] text-[#f5f4f1] text-[12px] tracking-[0.22em] uppercase font-medium hover:bg-accent transition-colors"
               >
-                Request Sponsorship Deck
+                {submitting ? "Sending Enquiry..." : "Start a Partnership Conversation"}
               </button>
             </form>
           </Reveal>
@@ -579,12 +617,14 @@ function Mission() {
 
 function Field({
   label,
+  name,
   value,
   onChange,
   placeholder,
   type = "text",
 }: {
   label: string;
+  name: string;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
@@ -594,6 +634,7 @@ function Field({
     <div>
       <label className="eyebrow block mb-2">{label}</label>
       <input
+        name={name}
         type={type}
         required
         value={value}

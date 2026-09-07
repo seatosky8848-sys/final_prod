@@ -2,9 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, Medal, Mountain } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import aboutHero from "../assets/about-hero.jpg";
-import portrait from "../assets/portrait-ajay.jpg";
-import cycling from "../assets/cycling-motion.jpg";
-import summit from "../assets/everest-summit.jpg";
+import portrait from "../assets/1675755_DSC09677.JPG";
+import cycling from "../assets/1000304720.jpeg";
+import summit from "../assets/everest/1000307604.webp";
+import { absoluteUrl } from "../lib/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -26,15 +27,27 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "The life and mission of a visually impaired endurance athlete.",
       },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: absoluteUrl("/about") },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/about") }],
   }),
   component: AboutPage,
 });
 
 const videos = [
+  {
+    id: "Zwm3UYH_uYw",
+    title: "High Altitude Resilience",
+    desc: "Insights into preparation, mental fortitude, and extreme mountain training.",
+    link: "https://youtu.be/Zwm3UYH_uYw?si=JscGdMpbYpsLavjV",
+  },
+  {
+    id: "mwtmUGgFYu0",
+    title: "Pushing Past Boundaries",
+    desc: "Behind-the-scenes perspective on overcoming physical and sensory limits.",
+    link: "https://youtu.be/mwtmUGgFYu0?si=G_vVhEqIeqeVPMkQ",
+  },
   {
     id: "xmQ_s_z2XII",
     title: "The Journey Begins",
@@ -163,7 +176,7 @@ function AboutPage() {
             <h2 className="display-lg mt-5">Documented moments from the road.</h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-3">
+          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {videos.map((video, index) => (
               <Reveal key={video.id} delay={index * 0.08}>
                 <a
