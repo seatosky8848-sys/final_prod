@@ -4,12 +4,15 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { SiteNav } from "../components/SiteNav";
 import { SiteFooter } from "../components/SiteFooter";
+import { resetSmoothScroll } from "../lib/scroll";
 import { Toaster } from "sonner";
 import { absoluteUrl, SITE_URL } from "../lib/site";
 
@@ -95,6 +98,21 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    resetSmoothScroll();
+    const resetFrame = window.requestAnimationFrame(() => {
+      resetSmoothScroll();
+    });
+
+    return () => window.cancelAnimationFrame(resetFrame);
+  }, [location.pathname, location.search, location.hash]);
+
+  return null;
+}
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -167,6 +185,7 @@ function RootComponent() {
         }}
       />
       <QueryClientProvider client={queryClient}>
+        <ScrollToTop />
         <SiteNav />
         <main className="min-h-screen">
           <Outlet />

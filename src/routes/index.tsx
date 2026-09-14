@@ -5,7 +5,7 @@ import { ArrowRight, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { toast } from "sonner";
 
 import heroImg from "../assets/hero-mountain.jpg";
-import portraitImg from "../assets/1675755_DSC09677.JPG";
+import narrativeImg from "../assets/101302_15328352_837652322.webp";
 import crossCountryRide from "../assets/1000304720.jpeg";
 import khardungLa from "../assets/Ladhak.jpeg";
 import himalayanTraining from "../assets/1000304717.jpeg";
@@ -67,14 +67,14 @@ const timeline = [
     img: himalayanTraining,
   },
   {
-    year: "2024",
+    year: "2026",
     title: "Everest Base Camp",
     location: "5,364 m, Nepal",
     desc: "A reconnaissance trek to the foot of the world's highest peak — and a rehearsal for the summit.",
     img: everestBaseCamp,
   },
   {
-    year: "2026",
+    year: "2028",
     title: "Everest Summit Mission",
     location: "8,848 m, Nepal",
     desc: "The Sea-to-Sky finale — a historic attempt as one of the first visually impaired summiteers.",
@@ -273,8 +273,8 @@ function Narrative() {
           <Reveal className="relative lg:col-span-5">
             <div className="overflow-hidden rounded-[32px] border border-border bg-muted">
               <img
-                src={portraitImg}
-                alt="Black and white portrait of Ajay Lalwani"
+                src={narrativeImg}
+                alt="Ajay Lalwani competing in an endurance race"
                 width={1024}
                 height={1280}
                 loading="lazy"
@@ -336,7 +336,7 @@ function Timeline() {
             <p className="eyebrow">— Chronicle</p>
             <h2 className="mt-3 text-3xl sm:text-4xl">Expedition Timeline</h2>
           </Reveal>
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => scroll(-1)}
               aria-label="Previous"

@@ -4,6 +4,11 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 
 import cyclingImage from "../assets/1000304720.jpeg";
+import cycle1 from "../assets/cyc/IMG-20260912-WA0003.webp";
+import cycle2 from "../assets/cyc/IMG-20260912-WA0007.webp";
+import cycle3 from "../assets/cyc/IMG-20260912-WA0010.webp";
+import cycle4 from "../assets/cyc/IMG-20260912-WA0011.webp";
+import cycle5 from "../assets/cyc/IMG-20260912-WA0012.webp";
 import g4 from "../assets/everest/1000307598.webp";
 import g5 from "../assets/everest/1000307601.webp";
 import g7 from "../assets/everest/1000307604.webp";
@@ -35,6 +40,11 @@ import medal7 from "../assets/Medals/1000307080.webp";
 import medal8 from "../assets/Medals/1000307083.webp";
 import media1 from "../assets/1000307378.webp";
 import media2 from "../assets/1000307371.webp";
+import media3 from "../assets/IMG-20260912-WA0004.webp";
+import media4 from "../assets/IMG-20260912-WA0005.webp";
+import media5 from "../assets/IMG-20260912-WA0006.webp";
+import media6 from "../assets/IMG-20260912-WA0008.webp";
+import media7 from "../assets/IMG-20260912-WA0009.webp";
 import news1 from "../assets/News Artical/1000304963.jpeg";
 import news2 from "../assets/News Artical/1000304965.jpeg";
 import news3 from "../assets/News Artical/1000304967.jpeg";
@@ -153,7 +163,7 @@ const medalCollection = [
   { src: medal8, alt: "Endurance sports medal" },
 ].map((medal) => ({
   ...medal,
-  cat: ["Medals"] as Exclude<Cat, "All">[],
+  cat: ["Medals", "Media"] as Exclude<Cat, "All">[],
 }));
 
 const photos: { src: string; alt: string; cat: Exclude<Cat, "All">[] }[] = [
@@ -186,8 +196,18 @@ const photos: { src: string; alt: string; cat: Exclude<Cat, "All">[] }[] = [
   { src: g8, alt: "Tying running shoes at sunrise", cat: ["Training"] },
   { src: g9, alt: "Press coverage and documentary filming", cat: ["Media", "News Article"] },
   { src: cyclingImage, alt: "Cyclist riding at dusk", cat: ["Cycling"] },
+  { src: cycle1, alt: "Ajay Lalwani cycling expedition photo 1", cat: ["Cycling"] },
+  { src: cycle2, alt: "Ajay Lalwani cycling expedition photo 2", cat: ["Cycling"] },
+  { src: cycle3, alt: "Ajay Lalwani cycling expedition photo 3", cat: ["Cycling"] },
+  { src: cycle4, alt: "Ajay Lalwani cycling expedition photo 4", cat: ["Cycling"] },
+  { src: cycle5, alt: "Ajay Lalwani cycling expedition photo 5", cat: ["Cycling"] },
   { src: media1, alt: "Ajay Lalwani media feature 1", cat: ["Media"] },
   { src: media2, alt: "Ajay Lalwani media feature 2", cat: ["Media"] },
+  { src: media3, alt: "Ajay Lalwani media feature 3", cat: ["Media"] },
+  { src: media4, alt: "Ajay Lalwani media feature 4", cat: ["Media"] },
+  { src: media5, alt: "Ajay Lalwani media feature 5", cat: ["Media"] },
+  { src: media6, alt: "Ajay Lalwani media feature 6", cat: ["Media"] },
+  { src: media7, alt: "Ajay Lalwani media feature 7", cat: ["Media"] },
 ];
 
 const filters: Cat[] = [

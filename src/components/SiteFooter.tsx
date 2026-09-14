@@ -35,7 +35,7 @@ export function SiteFooter() {
                 <Facebook size={16} />
               </a>
               <a
-                href="https://youtu.be/xmQ_s_z2XII?si=dHPMPyTglugyN4fk"
+                href="https://youtu.be/Zwm3UYH_uYw"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="YouTube"

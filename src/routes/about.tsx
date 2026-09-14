@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, Medal, Mountain } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import aboutHero from "../assets/about-hero.jpg";
 import portrait from "../assets/1675755_DSC09677.JPG";
@@ -121,39 +121,105 @@ function AboutPage() {
       <section className="py-24 md:py-32">
         <div className="max-w-[1100px] mx-auto px-6 md:px-10 text-center">
           <Reveal>
-            <p className="eyebrow">— Honors & Achievements</p>
+            <p className="eyebrow">— Adventure. Endurance. Achievement.</p>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="display-lg mt-4">Milestones of Grit.</h2>
+            <h2 className="display-lg mt-4">A Journey Beyond Limits</h2>
           </Reveal>
-          <div className="grid md:grid-cols-3 gap-6 mt-14 text-left">
-            {[
-              {
-                y: "2019",
-                t: "National Bravery Award",
-                d: "Recognized for exceptional courage in sports despite total visual impairment.",
-                icon: Medal,
-              },
-              {
-                y: "2021",
-                t: "Ultra-Endurance Titan",
-                d: "Completed the 3,900km trans-India cycling marathon in record time.",
-                icon: Award,
-              },
-              {
-                y: "2023",
-                t: "Summit Excellence",
-                d: "First visually impaired cyclist to reach Everest Base Camp on a modified mountain bike.",
-                icon: Mountain,
-              },
-            ].map((m, i) => (
-              <Reveal key={m.t} delay={i * 0.08} className="bg-[#ecebe7] p-8">
-                <m.icon size={22} className="text-accent" />
-                <p className="eyebrow mt-6">{m.y}</p>
-                <h3 className="font-display text-xl mt-2">{m.t}</h3>
-                <p className="text-[14px] leading-relaxed text-muted-foreground mt-3">{m.d}</p>
-              </Reveal>
-            ))}
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-8 max-w-3xl space-y-5 text-left text-[15px] leading-[1.8] text-muted-foreground">
+              <p>
+                An adventure enthusiast and multi-sport athlete with a passion for cycling,
+                trekking, mountaineering, swimming, triathlon, running, obstacle courses and
+                competitive sports.
+              </p>
+              <p>
+                My sporting journey spans national and international competitions, long-distance
+                cycling expeditions, mountain adventures and endurance events across India.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-16 border-t border-border pt-12 text-left">
+            <Reveal>
+              <p className="eyebrow">— Achievements & Milestones</p>
+            </Reveal>
+            <div className="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-2">
+              {[
+                [
+                  "2018 | Judo - Uzbekistan",
+                  "Judo World Cup | Uzbekistan",
+                  "Participated in the international Judo World Cup held in Uzbekistan.",
+                ],
+                [
+                  "2019 | Cycling - Mumbai to Goa",
+                  "1,200 km | 7 Days",
+                  "Completed a long-distance cycling expedition from Mumbai to Goa.",
+                ],
+                [
+                  "2020 | Cycling - Mumbai to Gondia",
+                  "2,010 km | 12 Days",
+                  "Completed a challenging long-distance cycling expedition from Mumbai to Gondia.",
+                ],
+                [
+                  "2020 | Kabaddi - National Championship",
+                  "Silver Medal - Team Achievement",
+                  "Competed at the National-level Kabaddi Championship, where our team secured the Silver Medal.",
+                ],
+                [
+                  "2021 | Cycling - Mumbai, Kashmir, Kanyakumari, Mumbai",
+                  "7,500 km | 45 Days",
+                  "Completed an extensive pan-India cycling expedition covering Mumbai to Kashmir to Kanyakumari to Mumbai.",
+                ],
+                [
+                  "2022 | Goalball - National Championship",
+                  "1st Place - Team Achievement",
+                  "Participated in the National Goalball Championship, where our team secured 1st Place.",
+                ],
+                [
+                  "2024 | Race Across India - Kashmir to Kanyakumari",
+                  "3,723 km | 9 Days 12 Hours 4 Minutes | Relay Format",
+                  "Completed the Kashmir to Kanyakumari Race Across India in a relay format. A demanding endurance cycling challenge requiring exceptional stamina, teamwork, discipline and determination.",
+                ],
+                [
+                  "2024 | Swimming",
+                  "Gold Medal - National Championship; Silver Medal - National Championship",
+                  "Participated in competitive swimming events and secured Gold and Silver medals.",
+                ],
+                [
+                  "Ongoing | Triathlon",
+                  "Triathlon Competitor",
+                  "Regularly participate in Triathlon events, combining swimming, cycling and running into one endurance challenge.",
+                ],
+                [
+                  "Ongoing | Obstacle Course & Endurance",
+                  "25+ Cities | 5 km Obstacle Runs",
+                  "Participated in Maruti Suzuki Devil Circuit, 15 5 km runs and obstacle course events across 25+ cities, testing strength, speed, endurance and mental resilience.",
+                ],
+                [
+                  "Ongoing | Running & Marathons",
+                  "Running and marathon events",
+                  "Regular participant in running events and marathons across different cities and challenging courses.",
+                ],
+                [
+                  "Ongoing | Trekking & Mountaineering",
+                  "280+ Sahyadri tracks and treks",
+                  "Himalayan trekking expeditions, Friendship Peak Expedition and Mount Everest Base Camp Expedition.",
+                ],
+              ].map(([heading, highlight, description], i) => (
+                <Reveal
+                  key={heading}
+                  delay={(i % 2) * 0.06}
+                  className="border-l-2 border-accent/40 bg-[#ecebe7] p-6 sm:p-8"
+                >
+                  <p className="eyebrow text-accent">{heading}</p>
+                  <h3 className="mt-3 font-display text-xl sm:text-2xl">{highlight}</h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
+                    {description}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
